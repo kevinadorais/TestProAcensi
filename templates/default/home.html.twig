@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Test Acensi : Liste des students{% endblock %}
+
+{% block body %}
+    <main>
+        <h2>Les Departements</h2>
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+        {% for department in departments %}
+            <a href="{{path('homeStudents',{'department':department.id} )}}">{{department.name}}</a> |
+        {% endfor %}
+        <h3>Liste des Students</h3>
+        {% block javascripts %}
+        <script type="text/javascript" src="{{ asset("js/studentsList.js") }}"></script>
+        {% endblock %}
+        {% for student in students %}
+            <div class="students">
+                <p>
+                    Nom : {{student.firstName}}<br>
+                    Prénom : {{student.lastName}}<br>
+                    Numéro : {{student.numEtud}}<br>
+                    <a href="{{path('editStudent',{'studentId':student.id})}}">Modifier</a>
+                    <a href="{{path('removeStudent',{'studentId':student.id})}}">Supprimer</a>
+                </p>
+            </div>
+        {% endfor %}
+    </main>
+{% endblock %}
