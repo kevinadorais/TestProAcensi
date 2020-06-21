@@ -16,7 +16,6 @@ use Doctrine\Common\Collections\Collection;
  * @ApiResource(
  * normalizationContext={"groups"={"read:student"}},
  * attributes={"order"={"firstName":"ASC"}},
- * collectionOperations={
  * )
  * @ApiFilter(SearchFilter::class,
     properties = {"department": "exact"}

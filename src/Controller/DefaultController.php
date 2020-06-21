@@ -21,7 +21,7 @@ class DefaultController extends AbstractController
 
         # Ouverture de la database et récuperation des Students et departments.
         $em = $this->getDoctrine()->getManager(); 
-        $students = $em->getRepository(Student::class)->findAll();
+        $students = $em->getRepository(Student::class)->sortByFirstName();
         $departments = $em->getRepository(Department::class)->findAll();
 
         return $this->render('default/home.html.twig', [

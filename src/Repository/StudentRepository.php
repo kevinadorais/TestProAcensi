@@ -22,12 +22,25 @@ class StudentRepository extends ServiceEntityRepository
     /**
      * @return Student[] Returns an array of Student objects
      */
+    public function sortByFirstName()
+    {
+        return $this->createQueryBuilder('student')
+            ->orderBy('student.firstName', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    /**
+     * @return Student[] Returns an array of Student objects
+     */
     public function findByDepartment($value)
     {
         return $this->createQueryBuilder('student')
             ->andWhere('student.department = :val')
             ->setParameter('val', $value)
-            ->orderBy('student.firstName', 'DESC')
+            ->orderBy('student.firstName', 'ASC')
             ->setMaxResults(10)
             ->getQuery()
             ->getResult()
