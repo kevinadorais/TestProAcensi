@@ -8,7 +8,6 @@ use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Student;
 use App\Entity\Department;
 use App\Form\StudentType;
-use Symfony\Component\HttpClient\HttpClient;
 
 
 class DefaultController extends AbstractController
@@ -19,7 +18,7 @@ class DefaultController extends AbstractController
     public function home()
     {
 
-        # Ouverture de la database et récuperation des Students et departments.
+        # Ouverture de la database et récuperation des Students trier par ordre alphabetique et et des departments.
         $em = $this->getDoctrine()->getManager(); 
         $students = $em->getRepository(Student::class)->sortByFirstName();
         $departments = $em->getRepository(Department::class)->findAll();
@@ -35,7 +34,7 @@ class DefaultController extends AbstractController
      */
     public function homeStudents($department)
     {
-        # Ouverture de la database et récuperation des Students et departments.
+        # Ouverture de la database et récuperation des Students par departement (trier par ordre alphabetique) et des departments.
         $em = $this->getDoctrine()->getManager(); 
         $students = $em->getRepository(Student::class)->findByDepartment($department);
         $departments = $em->getRepository(Department::class)->findAll();
